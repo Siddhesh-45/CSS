@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TicTacToe</title>
+
+    <style>
+      input {
+        width: 70px;
+        height: 70px;
+      }
+
+      .Reset {
+        background-color: rgb(28, 162, 35);
+        color: white;
+        height: auto;
+        padding: 10px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 10px;
+      }
+
+      .Reset:hover {
+        background-color: white;
+        color: rgb(28, 162, 35);
+        height: auto;
+        padding: 10px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        border-radius: 5px;
+        border-color: rgb(28, 162, 35);
+        margin-left: 10px;
+      }
+
+      .Exit {
+        background-color: rgb(221, 30, 0);
+        color: white;
+        height: auto;
+        padding: 10px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .Exit:hover {
+        background-color: white;
+        color: rgb(221, 30, 0);
+        height: auto;
+        padding: 10px;
+        border: 1px solid transparent;
+        border-color: rgb(221, 30, 0);
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .Block {
+        margin-left: 450px;
+        margin-top: 100px;
+      }
+      .Row1 {
+        display: inline-block;
+      }
+
+      .Row2 {
+        display: inline-block;
+      }
+
+      .Row3 {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body onload="getNames();">
+    <div class="Block">
+      <div style="margin-bottom: 30px"><h1>TIC TAC TOE</h1></div>
+
+      <div class="Row1">
+        <div>
+          <input
+            type="button"
+            id="button1"
+            name="button1"
+            onclick="check(1);" />
+        </div>
+        <div>
+          <input
+            type="button"
+            id="button2"
+            name="button2"
+            onclick="check(2);" />
+        </div>
+        <div>
+          <input
+            type="button"
+            id="button3"
+            name="button3"
+            onclick="check(3);" />
+        </div>
+      </div>
+
+      <div class="Row2">
+        <div>
+          <input
+            type="button"
+            id="button4"
+            name="button4"
+            onclick="check(4);" />
+        </div>
+        <div>
+          <input
+            type="button"
+            id="button5"
+            name="button5"
+            onclick="check(5);" />
+        </div>
+        <div>
+          <input
+            type="button"
+            id="button6"
+            name="button6"
+            onclick="check(6);" />
+        </div>
+      </div>
+
+      <div class="Row3">
+        <div>
+          <input
+            type="button"
+            id="button7"
+            name="button7"
+            onclick="check(7);" />
+        </div>
+        <div>
+          <input
+            type="button"
+            id="button8"
+            name="button8"
+            onclick="check(8);" />
+        </div>
+        <div>
+          <input
+            type="button"
+            id="button9"
+            name="button9"
+            onclick="check(9);" />
+        </div>
+      </div>
+
+      <div>
+        <input
+          type="button"
+          class="Reset"
+          id="Reset"
+          name="Reset"
+          value="Reset"
+          onclick="Reset();" />
+        <input
+          type="button"
+          class="Exit"
+          id="Exit"
+          name="Exit"
+          value="Exit"
+          onclick="Exit();" />
+      </div>
+    </div>
+    <div><p id="Demo"></p></div>
+
+    <script>
+      var count = 0;
+      var player, player1, player2;
+
+      function getNames() {
+        player1 = prompt("Enter First Player Name :");
+        player2 = prompt("Enter Second Player Name :");
+        if (
+          player1 == "" ||
+          player2 == "" ||
+          player1 == null ||
+          player2 == null
+        ) {
+          window.alert(
+            "Player names are not specified so DEFAULT names are taken"
+          );
+          player1 = "player 1";
+          player2 = "player 2";
+        }
+      }
+      function check(a) {
+        switch (a) {
+          case 1:
+            if (
+              (document.getElementById("button1").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button1").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button1").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button1").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+
+              setTimeout(win(1, 2, 3), 1000);
+              win(1, 5, 9);
+              win(1, 4, 7);
+            }
+
+            break;
+          case 2:
+            if (
+              (document.getElementById("button2").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button2").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button2").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button2").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+              win(1, 2, 3);
+              win(2, 5, 8);
+            }
+
+            break;
+          case 3:
+            if (
+              (document.getElementById("button3").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button3").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button3").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button3").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+              win(1, 2, 3);
+              win(3, 5, 7);
+              win(3, 6, 9);
+            }
+
+            break;
+          case 4:
+            if (
+              (document.getElementById("button4").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button4").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button4").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button4").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+
+              win(4, 5, 6);
+              win(1, 4, 7);
+            }
+
+            break;
+          case 5:
+            if (
+              (document.getElementById("button5").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button5").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button5").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button5").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+              win(5, 2, 8);
+              win(1, 5, 9);
+              win(5, 4, 6);
+              win(5, 7, 3);
+            }
+
+            break;
+          case 6:
+            if (
+              (document.getElementById("button6").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button6").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button6").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button6").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+              win(9, 6, 3);
+              win(6, 5, 4);
+            }
+
+            break;
+          case 7:
+            if (
+              (document.getElementById("button7").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button7").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button7").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button7").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+
+              win(7, 8, 9);
+              win(7, 5, 3);
+              win(1, 4, 7);
+            }
+
+            break;
+          case 8:
+            if (
+              (document.getElementById("button8").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button8").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button8").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button8").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+              win(2, 5, 8);
+              win(8, 9, 7);
+            }
+
+            break;
+          case 9:
+            if (
+              (document.getElementById("button9").style.backgroundColor ==
+                "yellow") |
+              (document.getElementById("button9").style.backgroundColor ==
+                "blue")
+            ) {
+              window.alert("The box is already selected ! ");
+              Reset();
+            } else {
+              count++;
+              if (count % 2 == 0) {
+                document.getElementById("button9").style.backgroundColor =
+                  "yellow";
+                player = player2;
+              } else {
+                document.getElementById("button9").style.backgroundColor =
+                  "blue";
+                player = player1;
+              }
+              win(9, 6, 3);
+              win(1, 5, 9);
+              win(8, 9, 7);
+            }
+
+            break;
+        }
+      }
+
+      function Exit() {
+        window.alert("Thanks for playing !");
+        window.close();
+      }
+      function Reset() {
+        document.getElementById("button2").style.backgroundColor =
+          "rgb(240, 240, 240)";
+        document.getElementById("button3").style.backgroundColor =
+          "rgb(240, 240, 241)";
+        document.getElementById("button4").style.backgroundColor =
+          "rgb(240, 240, 242)";
+        document.getElementById("button5").style.backgroundColor =
+          "rgb(240, 240, 243)";
+        document.getElementById("button6").style.backgroundColor =
+          "rgb(240, 240, 244)";
+        document.getElementById("button7").style.backgroundColor =
+          "rgb(240, 240, 245)";
+        document.getElementById("button8").style.backgroundColor =
+          "rgb(240, 240, 246)";
+        document.getElementById("button9").style.backgroundColor =
+          "rgb(240, 240, 247)";
+        document.getElementById("button1").style.backgroundColor =
+          "rgb(240, 240, 248)";
+        count = 0;
+      }
+
+      function win(n1, n2, n3) {
+        if (
+          (document.getElementById("button" + n1).style.backgroundColor ==
+            document.getElementById("button" + n2).style.backgroundColor) &
+          (document.getElementById("button" + n1).style.backgroundColor ==
+            document.getElementById("button" + n3).style.backgroundColor)
+        ) {
+          window.alert(player + " win !");
+          Reset();
+        }
+      }
+    </script>
+  </body>
+</html>
